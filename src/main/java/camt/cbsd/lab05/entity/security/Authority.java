@@ -1,11 +1,20 @@
 package camt.cbsd.lab05.entity.security;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 @Table(name = "AUTHORITY")
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Builder
 public class Authority {
 
     @Id

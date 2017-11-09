@@ -1,5 +1,9 @@
 package camt.cbsd.lab05.entity.security;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,6 +12,10 @@ import java.util.List;
 
 @Entity
 @Table(name = "USER")
+@NoArgsConstructor
+@AllArgsConstructor
+
+@Builder
 public class User {
 
     @Id
