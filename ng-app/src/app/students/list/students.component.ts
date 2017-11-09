@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Student} from '../student';
 import {StudentsDataService} from "../../service/students-data.service";
 import {Router} from "@angular/router";
+import {StudentsDataServerService} from "../../service/students-data-server.service";
 
 
 @Component({
@@ -12,11 +13,11 @@ import {Router} from "@angular/router";
 export class StudentsComponent {
   students: Student[];
 
-  constructor(private studentDataService: StudentsDataService, private router: Router ) {
+  constructor(private StudentsDataServerService: StudentsDataServerService, private router: Router ) {
   }
 
   ngOnInit() {
-    this.studentDataService.getStudentsData()
+    this.StudentsDataServerService.getStudentsData()
       .subscribe(students => this.students = students);
   }
 

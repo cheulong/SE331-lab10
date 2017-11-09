@@ -36,7 +36,7 @@ import {AuthenticationService} from "app/service/authentication.service";
     StudentRoutingModule, CourseRoutingModule, AppRoutingModule],
   bootstrap: [AppComponent],
   providers: [{provide: StudentsDataService, useClass: StudentsDataServerService},
-    CourseServerService,AuthenticationService],
+    CourseServerService,AuthenticationService,StudentsDataServerService],
 })
 export class AppModule {
 }
