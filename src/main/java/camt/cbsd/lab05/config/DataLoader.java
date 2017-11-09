@@ -25,7 +25,11 @@ import java.util.Date;
 @Component
 public class DataLoader implements ApplicationRunner {
     StudentDao studentDao;
+
+    @Autowired
     UserRepository userRepository;
+
+    @Autowired
     AuthorityRepository authorityRepository;
     @Autowired
     public void setStudentDao(StudentDao studentDao) {
@@ -79,16 +83,10 @@ public class DataLoader implements ApplicationRunner {
         student2.addCourse(course3);
         student3.addCourse(course1);
         student3.addCourse(course3);
-        securitySetup();
 
+        securitySetup();
     }
-    public void securitySetup(){
-        Authority auth1=
-                Authority.builder().name(AuthorityName.ROLE_USER).build();
-        Authority auth2=
-                Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
-        authorityRepository.save(auth1);
-        authorityRepository.save(auth2);
+    public void securitySetup() {
         User user1 = User.builder()
                 .username("admin")
                 .password("admin")
@@ -117,6 +115,13 @@ public class DataLoader implements ApplicationRunner {
                 .enabled(false)
                 .lastPasswordResetDate(Date.from(LocalDate.of(2016,01,01).atStartOfDay(ZoneId.systemDefault()).toInstant()))
                 .build();
+        Authority auth1=
+                Authority.builder().name(AuthorityName.ROLE_USER).build();
+        Authority auth2=
+                Authority.builder().name(AuthorityName.ROLE_ADMIN).build();
+        authorityRepository.save(auth1);
+        authorityRepository.save(auth2);
+
         user1.setAuthorities(new ArrayList<>());
         user1.getAuthorities().add(auth1);
         user1.getAuthorities().add(auth2);
