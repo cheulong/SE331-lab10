@@ -30,7 +30,7 @@ public class StudentController {
     public void setStudentService(StudentService studentService) {
         this.studentService = studentService;
     }
-
+    @CrossOrigin
     @GetMapping("/student")
     public ResponseEntity<?> getStudents() {
 
