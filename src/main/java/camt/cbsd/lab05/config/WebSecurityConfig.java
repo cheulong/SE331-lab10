@@ -56,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/course").hasRole("ADMIN")
                 .antMatchers(HttpMethod.OPTIONS,"/**").permitAll()
                 .antMatchers("/auth/**","/h2-console/**","/refresh","/images/**").permitAll()
                 .anyRequest().authenticated();

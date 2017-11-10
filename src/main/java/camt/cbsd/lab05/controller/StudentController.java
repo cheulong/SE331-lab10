@@ -72,7 +72,10 @@ public class StudentController {
         }
 
     }
-
+    @Value("${server.baseUrl")
+    String baseUrl;
+    @Value("${server.imageUrl")
+    String imageUrl;
     @PostMapping("/upload")
     public ResponseEntity<?> uploadImage(@RequestParam("file")MultipartFile file){
         if (file.isEmpty()){
@@ -85,7 +88,7 @@ public class StudentController {
             String newFilename = Integer.toString(LocalTime.now().hashCode(),16)+Integer.toString(oldFilename.hashCode(),16)+"."+ext;
             Path path = Paths.get(imageServerDir+newFilename);
             Files.write(path,bytes);
-            return ResponseEntity.ok(newFilename);
+            return ResponseEntity.ok(baseUrl+imageUrl+newFilename);
         }catch (IOException e){
             e.printStackTrace();;
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

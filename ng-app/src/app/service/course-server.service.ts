@@ -18,8 +18,11 @@ export class CourseServerService {
   }
 
   addCourse(course:Course){
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers, method: 'post'});
+    let headers = new Headers({
+      'Content-type': 'application/json',
+      'Authorization': 'Bearer ' + this.authenticationService.getToken()
+    });
+    let options = new RequestOptions({headers: headers});
     let body = JSON.stringify(course);
     return this.http.post('http://localhost:8080/course', body, options)
       .map(res => {
