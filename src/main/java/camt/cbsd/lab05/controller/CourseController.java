@@ -23,7 +23,7 @@ public class CourseController {
     public void setCourseService(CourseService courseService) {
         this.courseService = courseService;
     }
-
+    @CrossOrigin
     @GetMapping("/course")
     public ResponseEntity<?> list(){
         return ResponseEntity.ok(courseService.list());

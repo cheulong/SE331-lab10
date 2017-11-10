@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {Course} from '../students/course';
 import {Http,Headers, RequestOptions} from '@angular/http';
+import {AuthenticationService} from "./authentication.service";
 
 @Injectable()
 export class CourseServerService {
 
-  constructor(private http:Http) { }
-
+  constructor(private http:Http,private authenticationService:AuthenticationService) { }
+  private headers=new Headers({
+    'Content-type': 'application/json',
+    'Authorization':'Bearer '+ this.authenticationService.getToken()
+  });
   getCourse():Observable<Course[]>{
-    return this.http.get('http://localhost:8080/course')
+    return this.http.get('http://localhost:8080/course',{headers:this.headers})
       .map(res => res.json());
   }
 

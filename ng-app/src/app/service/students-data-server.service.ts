@@ -13,7 +13,7 @@ export class StudentsDataServerService {
   }
   private headers=new Headers({
     'Content-type': 'application/json',
-    'Authoriztion':'Bearer'+this.authenticationService.getToken()
+    'Authorization':'Bearer '+ this.authenticationService.getToken()
   });
 
   getStudentsData(){
@@ -25,7 +25,7 @@ export class StudentsDataServerService {
 
   getStudent(id: number) {
     let student:Student;
-    return this.http.get('http://localhost:8080/student/'+id)
+    return this.http.get('http://localhost:8080/student/'+id,{headers:this.headers})
       .map((res:Response) => {
         if (res){
           if (res.status === 200){
